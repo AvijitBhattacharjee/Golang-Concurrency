@@ -10,5 +10,9 @@ func main() {
 	// Sleeping Barber
 	pkg.StartSleepingBarber()
 
+	// producer-consumer 
 	pkg.StartProducerConsumer()
+
+	// printing ood-even concurrently
+	pkg.OddEvenPrint()
 }
