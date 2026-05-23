@@ -1,4 +1,3 @@
-
 package pkg
 
 import (
@@ -7,90 +6,67 @@ import (
 	"time"
 )
 
-const NumPhilosophers = 5
+const NumberOfPhilosophers = 5
 
 type Fork struct {
-	sync.Mutex
+	wg sync.Mutex
 }
 
 type Philosopher struct {
-	id        int
-	leftFork  *Fork
-	rightFork *Fork
+	id int
+	LeftFork *Fork
+	RightFork *Fork
 }
 
-func (p Philosopher) dine(wg *sync.WaitGroup) {
+func (p *Philosopher)dine(wg *sync.WaitGroup) {
+
 	defer wg.Done()
 
-	for i := 0; i < 3; i++ {
+	fmt.Printf("%d is thinking /n", p.id)
+	time.Sleep(500*time.Millisecond)
 
-		// Thinking
-		fmt.Printf("Philosopher %d is thinking\n", p.id)
-		time.Sleep(time.Millisecond * 500)
-
-		// Deadlock prevention
-		// Even philosophers pick right first
-		// Odd philosophers pick left first
-
-		if p.id%2 == 0 {
-
-			p.rightFork.Lock()
-			fmt.Printf("Philosopher %d picked RIGHT fork\n", p.id)
-
-			p.leftFork.Lock()
-			fmt.Printf("Philosopher %d picked LEFT fork\n", p.id)
-
-		} else {
-
-			p.leftFork.Lock()
-			fmt.Printf("Philosopher %d picked LEFT fork\n", p.id)
-
-			p.rightFork.Lock()
-			fmt.Printf("Philosopher %d picked RIGHT fork\n", p.id)
-		}
-
-		// Eating
-		fmt.Printf("Philosopher %d is eating\n", p.id)
-		time.Sleep(time.Millisecond * 500)
-
-		// Release forks
-		p.leftFork.Unlock()
-		p.rightFork.Unlock()
-
-		fmt.Printf("Philosopher %d finished eating\n", p.id)
+	if p.id %2 == 0 {
+		p.LeftFork.wg.Lock()
+		p.RightFork.wg.Lock()
+	} else {
+		p.RightFork.wg.Lock()
+		p.LeftFork.wg.TryLock()
 	}
+
+	fmt.Printf("%d is eating /n", p.id)
+	
+
+	time.Sleep(500*time.Millisecond)
+	p.LeftFork.wg.Unlock()
+	p.RightFork.wg.Unlock()
+
+	fmt.Printf("%d finished eating /n", p.id)
 }
 
 func StartDining() {
 
-	var forks [NumPhilosophers]*Fork
+	var forks [NumberOfPhilosophers]*Fork
 
-	// Initialize forks
-	for i := 0; i < NumPhilosophers; i++ {
+	for i:=0;i<NumberOfPhilosophers;i++ {
 		forks[i] = &Fork{}
 	}
 
-	var philosophers [NumPhilosophers]Philosopher
+	var philosophers [NumberOfPhilosophers]Philosopher
 
-	// Assign forks to philosophers
-	for i := 0; i < NumPhilosophers; i++ {
-
+	for i:=0;i<NumberOfPhilosophers;i++ {
 		philosophers[i] = Philosopher{
-			id:        i,
-			leftFork:  forks[i],
-			rightFork: forks[(i+1)%NumPhilosophers],
+			id: i,
+			LeftFork: forks[i],
+			RightFork: forks[(i+1)%NumberOfPhilosophers],
 		}
 	}
 
 	var wg sync.WaitGroup
 
-	// Start dining
-	for i := 0; i < NumPhilosophers; i++ {
+	for i:=0;i<NumberOfPhilosophers;i++ {
 		wg.Add(1)
 		go philosophers[i].dine(&wg)
 	}
 
 	wg.Wait()
-
-	fmt.Println("All philosophers are done eating")
 }
