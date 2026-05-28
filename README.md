@@ -19,11 +19,7 @@ This repository is built for:
 
 # Topics Covered
 
-## Classic Concurrency Problems
-
-- Dining Philosophers Problem
-- Sleeping Barber Problem
-- Producer Consumer Problem
+![alt text](image.png)
 
 ---
 
@@ -43,37 +39,6 @@ Golang-Concurrency/
 │
 └── README.md
 ```
-
----
-
-# Future Additions
-
-Planned additions:
-
-- Readers Writers Problem
-- H2O Problem
-- Rate Limiter
-- Worker Pool
-- Fan-In Fan-Out
-- Context Cancellation
-- Goroutine Leak Examples
-- Deadlock Detection
-- Semaphore Implementation
-- Pipeline Processing
-
----
-
-# Important Concurrency Concepts
-
-This repository demonstrates:
-
-- Synchronization
-- Deadlock prevention
-- Blocking vs non-blocking operations
-- Thread-safe resource sharing
-- Backpressure handling
-- Goroutine scheduling
-- Race condition prevention
 
 ---
 
