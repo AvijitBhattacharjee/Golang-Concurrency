@@ -1,47 +1,43 @@
 package pkg
+
 import (
 	"fmt"
 	"sync"
+	"time"
 )
 
-const limit = 10
+func OddEvenPrint() {
 
-func odd(wg *sync.WaitGroup, evenChan, oddChan chan bool) {
-	defer wg.Done()
-		for i := 1; i <= limit; i += 2 {
-			<-oddChan // Wait for turn signal
-			fmt.Printf("Odd: %d\n", i)
-			evenChan <- true // Hand over to even thread
-		}
+	var wg sync.WaitGroup
+
+	wg.Add(1)
+	go printOdd(&wg)
+	wg.Add(1)
+	go printEven(&wg)
+
+	wg.Wait()
+
 }
 
 
-func even(wg *sync.WaitGroup, evenChan, oddChan chan bool) {
+func printOdd(wg *sync.WaitGroup) {
 	defer wg.Done()
-		for i := 2; i <= limit; i += 2 {
-			<-evenChan // Wait for turn signal
-			fmt.Printf("Even: %d\n", i)
-			if i < limit {
-				oddChan <- true // Hand over to odd thread
-			}
+
+	for i:=0;i<10;i++ {
+		if i%2 != 0 {
+			fmt.Println("Prinitng odd = ", i)
+			time.Sleep(1*time.Second)
 		}
 	}
+}
 
-func OddEvenPrint() {
-	// Channels to signal turns
-	oddChan := make(chan bool)
-	evenChan := make(chan bool)
-	var wg sync.WaitGroup
+func printEven(wg *sync.WaitGroup) {
+	defer wg.Done()
 
-	wg.Add(2)
-
-	// Thread 1: Odd Numbers
-	go odd(&wg,evenChan, oddChan)
-
-	// Thread 2: Even Numbers
-	go even(&wg, evenChan, oddChan)
-
-	// Start the sequence
-	evenChan <- true
-	wg.Wait()
+	for i:=0;i<10;i++ {
+		if i%2 == 0 {
+			fmt.Println("Prinitng even = ", i)
+			time.Sleep(1*time.Second)
+		}
+	}
 }
