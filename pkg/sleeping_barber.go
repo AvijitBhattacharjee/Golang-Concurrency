@@ -1,6 +1,5 @@
 package pkg
 
-
 import (
 	"fmt"
 	"sync"
@@ -29,7 +28,7 @@ func customer(id int, customers chan int, wg *sync.WaitGroup) {
 	select {
 
 	case customers <- id:
-	fmt.Printf("Customer %d entered waiting room\n", id)
+		fmt.Printf("Customer %d entered waiting room\n", id)
 
 	default:
 		fmt.Printf("Customer %d left, no empty chair\n", id)

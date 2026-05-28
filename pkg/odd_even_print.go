@@ -19,14 +19,13 @@ func OddEvenPrint() {
 
 }
 
-
 func printOdd(wg *sync.WaitGroup) {
 	defer wg.Done()
 
-	for i:=0;i<10;i++ {
+	for i := 0; i < 10; i++ {
 		if i%2 != 0 {
 			fmt.Println("Prinitng odd = ", i)
-			time.Sleep(1*time.Second)
+			time.Sleep(1 * time.Second)
 		}
 	}
 }
@@ -34,10 +33,10 @@ func printOdd(wg *sync.WaitGroup) {
 func printEven(wg *sync.WaitGroup) {
 	defer wg.Done()
 
-	for i:=0;i<10;i++ {
+	for i := 0; i < 10; i++ {
 		if i%2 == 0 {
 			fmt.Println("Prinitng even = ", i)
-			time.Sleep(1*time.Second)
+			time.Sleep(1 * time.Second)
 		}
 	}
 }
