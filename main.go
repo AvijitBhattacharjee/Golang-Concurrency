@@ -1,55 +1,93 @@
 package main
 
-import "github.com/AvijitBhattacharjee/Golang-Concurrency/pkg"
-import "github.com/AvijitBhattacharjee/Golang-Concurrency/pkg/core_concepts"
+import (
+	core "github.com/AvijitBhattacharjee/Golang-Concurrency/pkg/core_concepts"
+	"github.com/AvijitBhattacharjee/Golang-Concurrency/pkg"
+)
 
 func main() {
 
-	// dining philosopher problem
-	// pkg.StartDining()
+	// ============================================================
+	// CLASSICAL CONCURRENCY & SYNCHRONIZATION PROBLEMS
+	// These are well-known operating system and interview problems
+	// that focus on coordination, ordering, and deadlock prevention.
+	// ============================================================
 
-	// // // Sleeping Barber
-	// pkg.StartSleepingBarber()
+	// Dining Philosophers Problem
+	pkg.StartDining()
 
-	// // // producer-consumer
-	// pkg.StartProducerConsumer()
+	// Sleeping Barber Problem
+	pkg.StartSleepingBarber()
 
-	// // printing ood-even concurrently
-	// pkg.OddEvenPrint()
+	// Building H2O Molecules (2 Hydrogen + 1 Oxygen)
+	pkg.Build_H2O()
 
-	// // Dekker's algorithm
-	// pkg.DekkersAlgorithm()
+	// Dekker's Algorithm (Mutual Exclusion)
+	pkg.DekkersAlgorithm()
 
-	// // channel_blocking_behavior
-	// pkg.ChannelBlockingBehavior()
+	// Print Odd and Even Numbers Concurrently
+	pkg.OddEvenPrint()
 
-	// // timeOut_channel
-	// pkg.TimeOutChannel()
+	// ============================================================
+	// CHANNELS & GOROUTINE FUNDAMENTALS
+	// Demonstrates how goroutines communicate, block, timeout,
+	// and how leaks can occur when channels are misused.
+	// ============================================================
 
-	// // goroutine_lekage
-	// //pkg.PlayBook()
+	// Understanding Channel Blocking Behavior
+	core.ChannelBlockingBehavior()
 
-	// // implemnting worker pool
-	// pkg.WorkerPools()
+	// Implementing Timeouts Using Channels
+	core.TimeOutChannel()
 
-	// pkg.RateLimiter()
+	// Detecting and Preventing Goroutine Leaks
+	core.Goroutine_lekage()
 
-	// pkg.Goroutine_lekage()
+	// Gracefully Stop Goroutines Using Context Cancellation
+	core.ContextCancellation()
 
+	// ============================================================
+	// PRODUCTION-GRADE CONCURRENCY PATTERNS
+	// Common patterns used in backend services, distributed systems,
+	// storage systems, and cloud-native applications.
+	// ============================================================
 
-	// pkg.Build_H2O()
+	// Producer Consumer Pattern
+	pkg.StartProducerConsumer()
 
-	// pkg.Thread_Cache()
+	// Worker Pool Pattern
+	pkg.WorkerPools()
 
-	// pkg.Reader_Writer()
+	// Rate Limiting Using Tickers and Channels
+	pkg.RateLimiter()
 
-	pkg.Task_Scheduler()
-
+	// Pipeline Processing (Generator -> Transform -> Consumer)
 	pkg.PipelineConcurrency()
 
-	pkg.WebCrawler()
-	
-	core_concepts.ContextCancellation()
+	// Error Propagation Across Concurrent Tasks
+	core.ErrorGroup()
 
-	pkg.core_concepts.ErrorGroup()
+	// ============================================================
+	// THREAD SAFETY & SHARED STATE
+	// Demonstrates safe concurrent access to shared memory using
+	// mutexes and read-write locks.
+	// ============================================================
+
+	// Thread-Safe Cache using RWMutex
+	pkg.Thread_Cache()
+
+	// Multiple Readers and Writers accessing shared data
+	pkg.Reader_Writer()
+
+	// ============================================================
+	// SYSTEM DESIGN & REAL-WORLD INTERVIEW PROBLEMS
+	// Frequently asked in Rubrik, Datadog, CockroachDB,
+	// Confluent, Nutanix and other backend interviews.
+	// ============================================================
+
+	// Concurrent Task Scheduler
+	pkg.Task_Scheduler()
+
+	// Concurrent Web Crawler with Deduplication
+	pkg.WebCrawler()
 }

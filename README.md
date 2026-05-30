@@ -1,56 +1,72 @@
 # Golang Concurrency
 
-A collection of famous concurrency problems and patterns implemented in Go using:
+A curated collection of **Golang concurrency patterns, synchronization primitives, classical operating system problems, and real-world interview questions** frequently asked in backend and distributed systems interviews.
 
-- Goroutines
-- Channels
-- Mutexes
-- WaitGroups
-- Synchronization primitives
-
-This repository is built for:
-
-- Interview preparation
-- Understanding Golang concurrency
-- Practicing classic operating system synchronization problems
-- Backend/distributed systems engineering preparation
+This repository is designed for engineers preparing for roles involving **Go, Distributed Systems, Cloud-Native Applications, Storage Systems, and Backend Engineering**, while also serving as a practical reference for learning concurrency fundamentals and production-ready concurrency patterns.
 
 ---
 
 # Topics Covered
 
-![alt text](image.png)
+![Topics Covered](image.png)
 
 ---
 
-# Repository Structure
+# Core Concepts
 
-```bash
-Golang-Concurrency/
+![Core Concepts](image-1.png)
+
+---
+
+## Repository Structure
+
+```text
+Golang-Concurrency
 │
 ├── main.go
 ├── go.mod
 ├── go.sum
+├── README.md
 │
-├── pkg/
-│   ├── dining_philosopher.go
-│   ├── sleeping_barber.go
-│   └── producer_consumer.go
+├── .github
+│   └── workflows
+│       └── go.yml          # CI workflow for build validation
 │
-└── README.md
+├── pkg
+│   └── Common Interview Questions
+│
+└── pkg/core_concepts
+    └── Concurrency Concepts
 ```
 
 ---
 
-# Topics Left
-1. Context Cancellation
-2. Semaphore 
-3. Fan-In/Fan-Out
-4. Concurrent File Processing
+## Interview Preparation
 
-# Author
+This repository covers many commonly discussed concurrency topics found in backend, distributed systems, and Golang interviews, including:
 
-Avijit Bhattacharjee
+* Goroutines & Channels
+* Mutex & RWMutex
+* Context Cancellation
+* Error Propagation
+* Worker Pools
+* Producer Consumer Pattern
+* Rate Limiting
+* Pipeline Processing
+* Thread-Safe Caching
+* Task Scheduling
+* Concurrent Web Crawling
+* Synchronization Problems
+* Goroutine Lifecycle Management
 
-GitHub:
-https://github.com/AvijitBhattacharjee
+The examples range from **core concurrency concepts** to **classical synchronization problems** and **real-world system design patterns**, making it useful for interview preparation as well as practical learning.
+
+---
+
+## Author
+
+**Avijit Bhattacharjee**
+
+Backend Software Engineer | Golang | Kubernetes | Distributed Systems
+
+GitHub: https://github.com/AvijitBhattacharjee
