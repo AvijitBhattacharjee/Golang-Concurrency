@@ -1,4 +1,4 @@
-package core_concepts
+package coreconcepts
 
 import (
 	"errors"
