@@ -90,4 +90,7 @@ func main() {
 
 	// Concurrent Web Crawler with Deduplication
 	pkg.WebCrawler()
+
+	// Thread-Safe Request Counter grouped by IP and Browser
+	pkg.ThreadSafeRequestCounter()
 }
