@@ -93,4 +93,10 @@ func main() {
 
 	// Thread-Safe Request Counter grouped by IP and Browser
 	pkg.ThreadSafeRequestCounter()
+
+	// Simulating a Bathroom with Limited Capacity and Gender Restrictions
+	pkg.Bathroom_Test()
+
+	// Implementing a FIFO Queue with specific memory constraints and multi-threading considerations
+	pkg.FIFOQueue_Test()
 }
