@@ -108,3 +108,17 @@ the main goroutine hits the first fmt <-ch and buffer becomes 0
 ch<- 2
 then 2nd fmt print 2
 
+
+
+
+
+1. closing the channel in main goroutine is wrong
+producer should always close the channel
+
+2. producer-consumer/reader-writer - both party should in a go routine
+
+3. map should be thread safe with mutex
+
+4. for map if there is read write operations 
+declare sync.RWMutex
+and while reading mu.RLock()
