@@ -22,24 +22,24 @@ func (p *Philosopher) dine(wg *sync.WaitGroup) {
 
 	defer wg.Done()
 
-	fmt.Printf("%d is thinking /n", p.id)
+	fmt.Printf("%d is thinking \n", p.id)
 	time.Sleep(500 * time.Millisecond)
 
 	if p.id%2 == 0 {
-		p.LeftFork.wg.Lock()
+		p.LeftFork.wg.Lock() 
 		p.RightFork.wg.Lock()
 	} else {
 		p.RightFork.wg.Lock()
-		p.LeftFork.wg.TryLock()
+		p.LeftFork.wg.Lock()
 	}
 
-	fmt.Printf("%d is eating /n", p.id)
+	fmt.Printf("%d is eating \n", p.id)
 
 	time.Sleep(500 * time.Millisecond)
 	p.LeftFork.wg.Unlock()
 	p.RightFork.wg.Unlock()
 
-	fmt.Printf("%d finished eating /n", p.id)
+	fmt.Printf("%d finished eating \n", p.id)
 }
 
 func StartDining() {
