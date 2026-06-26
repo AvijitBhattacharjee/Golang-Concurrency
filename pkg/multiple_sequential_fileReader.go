@@ -17,18 +17,18 @@ func main() {
 	var limiter = time.Tick(2*time.Second)
 
 	wg.Add(1)
-	go producer(&wg, numberOfFiles, files)
+	go producer2(&wg, numberOfFiles, files)
 
 	for i:=0;i<numberOfonsumers;i++ {
 		wg.Add(1)
-		go consumer(&wg, files, limiter, i+1)
+		go consumer2(&wg, files, limiter, i+1)
 	}
 
 	wg.Wait()
 	fmt.Println("All files read successfully")
 }
 
-func producer(wg *sync.WaitGroup, numberOfFiles int, files chan<- int) {
+func producer2(wg *sync.WaitGroup, numberOfFiles int, files chan<- int) {
 	defer wg.Done()
 	for i:=0;i<numberOfFiles;i++ {
 		files <- i
@@ -36,7 +36,7 @@ func producer(wg *sync.WaitGroup, numberOfFiles int, files chan<- int) {
 	close(files)
 }
 
-func consumer(wg *sync.WaitGroup, files <-chan int, limiter <-chan time.Time, id int) {
+func consumer2(wg *sync.WaitGroup, files <-chan int, limiter <-chan time.Time, id int) {
 	defer wg.Done()
 	for file := range files {
 		fmt.Printf("%d Reading file %d\n", id, file)
