@@ -102,4 +102,10 @@ func main() {
 
 	// Implementing Context Timeout for concurrent tasks
 	pkg.ContextTimeout()
+
+	// Implementing call back manager event
+	pkg.CallbackManagerEvent()
+
+	// all cases
+	pkg.CallbackManagerEvent()
 }
